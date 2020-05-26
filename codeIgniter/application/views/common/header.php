@@ -30,6 +30,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><?= anchor('index', "Accueil", ['class' => "nav-link text_color_orange"]); ?></li>
         <li class="nav-item"><?= anchor('contact', "Contact", ['class' => "nav-link text_color_orange"]); ?></li>
+        <li class="nav-item"><?= anchor('about', "À propos", ['class' => "nav-link text_color_orange"]); ?></li>
       </ul>
     </div>
   </nav>

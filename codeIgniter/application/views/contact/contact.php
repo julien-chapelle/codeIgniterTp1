@@ -19,6 +19,13 @@
             </div>
         </div>
         <div class="form-group">
+            <?= form_label("Confirmer mail&nbsp;:", "email_confirme", ['class' => "col-md-2"]) ?>
+            <div class="col-md-10 <?= empty(form_error('email_confirme')) ? '' : 'has-error' ?>">
+                <?= form_input(['name' => "email_confirme", 'id' => "email_confirme", 'type' => 'email', 'class' => 'form-control border-top-0 border-right-0 rounded-0 border-warning', 'placeholder' => "ex: exemple@gmail.com"], set_value('email_confirme')) ?>
+                <span class="help-block text_error"><?= form_error('email_confirme'); ?></span>
+            </div>
+        </div>
+        <div class="form-group">
             <?= form_label("Titre&nbsp;:", "title", ['class' => "col-md-2"]) ?>
             <div class="col-md-10 <?= empty(form_error('title')) ? '' : 'has-error' ?>">
                 <?= form_input(['name' => "title", 'id' => "title", 'class' => 'form-control border-top-0 border-right-0 rounded-0 border-warning', 'placeholder' => "ex: Demande d'informations"], set_value('title')) ?>

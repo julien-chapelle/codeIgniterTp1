@@ -23,6 +23,7 @@ class Accueil extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Nom', 'required');
         $this->form_validation->set_rules('email', 'Mail', array('valid_email', 'required'));
+        $this->form_validation->set_rules('email_confirme', 'Confirmer Mail', array('valid_email', 'required'));
         $this->form_validation->set_rules('title', 'Titre', 'required');
         $this->form_validation->set_rules('message', 'Message', 'required');
 
@@ -39,6 +40,15 @@ class Accueil extends CI_Controller
         } else {
             $this->load->view('contact/contact', $data);
         }
+        $this->load->view('common/footer', $data);
+    }
+
+    public function about()
+    {
+        $data['title'] = 'À propos';
+
+        $this->load->view('common/header', $data);
+        $this->load->view('about/about', $data);
         $this->load->view('common/footer', $data);
     }
 };
