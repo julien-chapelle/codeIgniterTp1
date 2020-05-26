@@ -1,0 +1,18 @@
+.nav_logo_size {
+    width: 25px;
+    height: auto;
+}
+
+.text_color_orange {
+    color: #dd4814;
+}
+
+.index_background {
+    background-color: #dd4a147b;
+    height: 200px;
+    margin-top: 20px;
+}
+
+.text_error {
+    color: red;
+}

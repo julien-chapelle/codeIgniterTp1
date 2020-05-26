@@ -1,36 +1,35 @@
-<!DOCTYPE html>
+<?= doctype('html5'); ?>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $title ?></title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
+<head>
+  <?= meta("UTF-8", "", 'charset'); ?>
+  <?= meta("X-UA-Compatible", "IE=edge", 'http-equiv'); ?>
+  <?= meta("viewport", "width=device-width, initial-scale=1"); ?>
+  <title><?= $title ?></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../assets/css/style.css" />
+  <!-- <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../assets/css/bootstrap-theme.min.css" /> -->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![ endif ] -->
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                  data-target="#main_nav" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/index.html">Sébastien Adam</a>
-        </div>
-        <div class="collapse navbar-collapse" id="main_nav">
-          <ul class="nav navbar-nav">
-            <li><a href="/index.html">Accueil</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <a class="navbar-brand text_color_orange" href="<?= site_url('index'); ?>">TP CodeIgniter</a>
+    <img src="../../../assets/images/codeigniter_logo.png" class="nav_logo_size mr-2">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><?= anchor('index', "Accueil", ['class' => "nav-link text_color_orange"]); ?></li>
+        <li class="nav-item"><?= anchor('contact', "Contact", ['class' => "nav-link text_color_orange"]); ?></li>
+      </ul>
+    </div>
+  </nav>

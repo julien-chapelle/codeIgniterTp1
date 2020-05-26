@@ -1,6 +1,6 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1><?=$title?></h1>
+<div class="index_background">
+  <div class="container py-2">
+    <?= heading($title, 3); ?>
     <p>Ceci est ma page d'accueil</p>
   </div>
 </div>
