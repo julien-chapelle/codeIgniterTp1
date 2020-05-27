@@ -68,16 +68,22 @@ class Accueil extends CI_Controller
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             $this->auth_user->login($username, $password);
-            redirect('index');
-        } else {
-            $this->load->view('common/header', $data);
-            $this->load->view('connection/connection', $data);
-            $this->load->view('common/footer', $data);
-        }
+            if ($this->auth_user->is_connected) {
+                redirect('index');
+            } else {
+                $data['login_error'] = "Échec de l'authentification";
+            };
+        };
+
+        $this->load->view('common/header', $data);
+        $this->load->view('connection/connection', $data);
+        $this->load->view('common/footer', $data);
     }
 
-    public function deconnection() {
+    public function deconnection()
+    {
         $this->auth_user->logout();
         redirect('index');
     }
+
 };
