@@ -1,6 +1,7 @@
 <div class="index_background">
     <div class="container py-2">
         <?= heading($title, 3); ?>
+        <hr />
     </div>
 </div>
 <div class="container">
