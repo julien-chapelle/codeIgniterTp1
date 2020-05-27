@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Europe/Paris');
 
 class Accueil extends CI_Controller
 {
@@ -15,7 +16,7 @@ class Accueil extends CI_Controller
 
     public function contact()
     {
-        
+
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -50,5 +51,33 @@ class Accueil extends CI_Controller
         $this->load->view('common/header', $data);
         $this->load->view('about/about', $data);
         $this->load->view('common/footer', $data);
+    }
+
+
+    public function connection()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['title'] = 'Connexion compte';
+
+        $this->form_validation->set_rules('username', 'Nom d\'utilisateur', 'required');
+        $this->form_validation->set_rules('password', 'Mot de passe', 'required');
+
+        if ($this->form_validation->run()) {
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $this->auth_user->login($username, $password);
+            redirect('index');
+        } else {
+            $this->load->view('common/header', $data);
+            $this->load->view('connection/connection', $data);
+            $this->load->view('common/footer', $data);
+        }
+    }
+
+    public function deconnection() {
+        $this->auth_user->logout();
+        redirect('index');
     }
 };

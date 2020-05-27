@@ -1,7 +1,7 @@
 <div class="container">
       <hr>
       <footer>
-        <p>&copy; Julien Chapelle <?= strftime('%Y', now()) ?></p>
+        <p>&copy; Julien Chapelle <?= strftime('%Y', now()) . ' | ' . 'Connexion à : ' . strftime('%Hh%M', $this->session->__ci_last_regenerate) ?></p>
       </footer>
       </div>
     <!-- <script src="../../../assets/javascript/jquery-3.0.0.min.js"></script>
