@@ -1,7 +1,7 @@
 <div class="container">
       <hr>
       <footer>
-        <p>&copy; Sébastien Adam 2016</p>
+        <p>&copy; Julien Chapelle <?= strftime('%Y', now()) ?></p>
       </footer>
       </div>
     <!-- <script src="../../../assets/javascript/jquery-3.0.0.min.js"></script>

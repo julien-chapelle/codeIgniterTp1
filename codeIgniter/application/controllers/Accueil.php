@@ -22,8 +22,8 @@ class Accueil extends CI_Controller
         $data['title'] = 'Contact';
 
         $this->form_validation->set_rules('name', 'Nom', 'required');
-        $this->form_validation->set_rules('email', 'Mail', array('valid_email', 'required'));
-        $this->form_validation->set_rules('email_confirme', 'Confirmer Mail', array('valid_email', 'required'));
+        $this->form_validation->set_rules('email', 'Mail', 'valid_email|required');
+        $this->form_validation->set_rules('email_confirme', 'Confirmer Mail', 'valid_email|required|matches[email]');
         $this->form_validation->set_rules('title', 'Titre', 'required');
         $this->form_validation->set_rules('message', 'Message', 'required');
 

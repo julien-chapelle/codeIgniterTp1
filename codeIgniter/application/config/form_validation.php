@@ -11,12 +11,12 @@ $config = array(
         array(
             'field' => 'email',
             'label' => 'Mail',
-            'rules' => array('valid_email', 'required')
+            'rules' => 'valid_email|required'
         ), 
         array(
             'field' => 'email_confirme',
             'label' => 'Confirmer Mail',
-            'rules' => array('valid_email', 'required')
+            'rules' => 'valid_email|required|matches[email]'
         ), 
         array(
             'field' => 'title',
