@@ -103,13 +103,6 @@ class Blog extends CI_Controller
         if (!$this->item_detail->is_found) {
             redirect('blog/index');
         }
-        if ($this->input->post('confirm') === NULL) {
-            $data['action'] = "confirm";
-        } else {
-            $this->item_detail->delete();
-            $data['action'] = "result";
-        }
-        $data['title'] = "Suppression article";
 
         $this->load->helper('form');
 
@@ -125,9 +118,42 @@ class Blog extends CI_Controller
                 $data['action'] = "result";
             };
             $data['title'] = "Suppression article";
-
             $this->load->view('common/header', $data);
             $this->load->view('blog/delete', $data);
+            $this->load->view('common/footer', $data);
+        }
+    }
+
+    public function publication($id = NULL)
+    {
+        if (!$this->auth_user->is_connected) {
+            redirect('blog/index');
+        }
+        if (!is_numeric($id)) {
+            redirect('blog/index');
+        }
+        $this->load->model('item_detail');
+        $this->item_detail->load($id, TRUE);
+        if (!$this->item_detail->is_found) {
+            redirect('blog/index');
+        }
+
+        $this->load->helper('form');
+
+        if ($this->input->is_ajax_request()) {
+            // nous avons reçu une requête ajax
+            $this->load->view('blog/publish_confirm');
+        } else {
+            // nous avons reçu une requête classique
+            if ($this->input->post('confirm') === NULL) {
+                $data['action'] = "confirm";
+            } else {
+                $this->item_detail->publish();
+                $data['action'] = "result";
+            };
+            $data['title'] = "Publication article";
+            $this->load->view('common/header', $data);
+            $this->load->view('blog/publish', $data);
             $this->load->view('common/footer', $data);
         }
     }

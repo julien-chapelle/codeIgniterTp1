@@ -1,8 +1,10 @@
 <div class="container">
-    <div class="row">
-        <?= heading($title, 3); ?>
-        <hr />
+    <div class="row pt-2">
+        <div class="col-md-12">
+            <?= heading($title, 3); ?>
+        </div>
     </div>
+    <hr />
     <div class="row">
         <?= form_open('connection', ['class' => 'form-horizontal']); ?>
         <div class="form-group">

@@ -1,17 +1,15 @@
 <div class="container">
-    <div class="row">
+    <div class="row pt-2">
+        <div class="col-md-5">
+            <ul class="nav nav-pills nav-justified">
+                <?php if ($this->auth_user->is_connected) : ?>
+                    <li role="presentation"><?= anchor('blog/edition', "Nouvel article", ['class' => 'btn btn-outline-warning btn-sm mb-2']); ?></li>
+                <?php endif; ?>
+            </ul>
+        </div>
         <div class="col-md-12">
             <?= heading($title, 3); ?>
             <hr />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10">
-            <ul class="nav nav-pills nav-justified">
-                <?php if ($this->auth_user->is_connected) : ?>
-                    <li role="presentation"><?= anchor('blog/edition', "Nouvel article", ['class' => 'btn btn-outline-warning mb-2']); ?></li>
-                <?php endif; ?>
-            </ul>
         </div>
     </div>
     <div class="row">

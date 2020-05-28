@@ -150,4 +150,12 @@ class Item_detail extends CI_Model {
             $this->save();
         }
     }
+
+    public function publish()
+    {
+        if ($this->is_found) {
+            $this->_status = 'P';
+            $this->save();
+        }
+    }
 }
