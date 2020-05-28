@@ -9,9 +9,7 @@
         <div class="col-md-10">
             <ul class="nav nav-pills nav-justified">
                 <?php if ($this->auth_user->is_connected) : ?>
-                    <li role="presentation">
-                        <?= anchor('blog/nouvel_article', "Nouvel article", ['class' => "btn btn-outline-warning mb-2"]); ?>
-                    </li>
+                    <li role="presentation"><?= anchor('blog/edition', "Nouvel article", ['class' => 'btn btn-outline-warning mb-2']); ?></li>
                 <?php endif; ?>
             </ul>
         </div>

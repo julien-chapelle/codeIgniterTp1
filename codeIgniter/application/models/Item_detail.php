@@ -142,4 +142,12 @@ class Item_detail extends CI_Model {
         $this->_title = $title;
         $this->_alias = $alias;
     }
+
+    public function delete()
+    {
+        if ($this->is_found) {
+            $this->_status = 'D';
+            $this->save();
+        }
+    }
 }

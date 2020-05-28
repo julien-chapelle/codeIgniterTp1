@@ -18,7 +18,7 @@ class Blog extends CI_Controller
         $this->load->view('common/footer', $data);
     }
 
-    public function nouvel_article()
+    public function edition($id = NULL)
     {
         if (!$this->auth_user->is_connected) {
             redirect('blog/index');
@@ -26,19 +26,33 @@ class Blog extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('article_status');
+        $this->load->model('item_detail');
+
+        if ($id !== NULL) {        // si identifiant donné, modification
+            if (is_numeric($id)) { // vérification validité de l'identifiant
+                $this->item_detail->load($id, TRUE);
+                if (!$this->item_detail->is_found) {
+                    redirect('blog/index');
+                }
+            } else {
+                redirect('blog/index');
+            }
+            $data['title'] = "Modification article";
+        } else {                  // si aucun identifiant donné, création
+            $data['title'] = "Nouvel article";
+            $this->item_detail->author_id = $this->auth_user->id;
+        };
+
         $this->set_blog_post_validation();
 
-        $data['title'] = "Nouvel article";
-
         if ($this->form_validation->run() == TRUE) {
-            $this->load->model('item_detail');
-            $this->item_detail->author_id = $this->auth_user->id;
+
             $this->item_detail->content = $this->input->post('content');
             $this->item_detail->status = $this->input->post('status');
             $this->item_detail->title = $this->input->post('title');
             $this->item_detail->save();
             if ($this->item_detail->is_found) {
-                redirect('blog/index');
+                redirect('blog/' . $this->item_detail->alias . '_' . $this->item_detail->id);
             }
         }
         $this->load->view('common/header', $data);
@@ -52,5 +66,69 @@ class Blog extends CI_Controller
         $this->form_validation->set_rules('title', 'Titre', 'required|max_length[64]');
         $this->form_validation->set_rules('content', 'Texte', 'required');
         $this->form_validation->set_rules('status', 'Statut', 'required|in_list[' . $list . ']');
+    }
+
+    public function article($id = NULL)
+    {
+        if (!is_numeric($id)) {
+            redirect('blog/index');
+        }
+        $this->load->helper('date');
+        $this->load->model('item_detail');
+        $this->load->model('article_status');
+        $this->item_detail->load($id, $this->auth_user->is_connected);
+
+        if ($this->item_detail->is_found) {
+            $data['title'] = htmlentities($this->item_detail->title);
+            $data['script'] = '<script src="' . base_url('../../../assets/javascript/article.js') . '"></script>';
+
+            $this->load->view('common/header', $data);
+            $this->load->view('blog/article', $data);
+            $this->load->view('common/footer', $data);
+        } else {
+            redirect('blog/index');
+        }
+    }
+
+    public function suppression($id = NULL)
+    {
+        if (!$this->auth_user->is_connected) {
+            redirect('blog/index');
+        }
+        if (!is_numeric($id)) {
+            redirect('blog/index');
+        }
+        $this->load->model('item_detail');
+        $this->item_detail->load($id, TRUE);
+        if (!$this->item_detail->is_found) {
+            redirect('blog/index');
+        }
+        if ($this->input->post('confirm') === NULL) {
+            $data['action'] = "confirm";
+        } else {
+            $this->item_detail->delete();
+            $data['action'] = "result";
+        }
+        $data['title'] = "Suppression article";
+
+        $this->load->helper('form');
+
+        if ($this->input->is_ajax_request()) {
+            // nous avons reçu une requête ajax
+            $this->load->view('blog/delete_confirm');
+        } else {
+            // nous avons reçu une requête classique
+            if ($this->input->post('confirm') === NULL) {
+                $data['action'] = "confirm";
+            } else {
+                $this->item_detail->delete();
+                $data['action'] = "result";
+            };
+            $data['title'] = "Suppression article";
+
+            $this->load->view('common/header', $data);
+            $this->load->view('blog/delete', $data);
+            $this->load->view('common/footer', $data);
+        }
     }
 }
