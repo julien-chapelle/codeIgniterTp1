@@ -7,7 +7,7 @@ class Accueil extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Page d\'accueil';
+        $data['title'] = 'Accueil';
 
         $this->load->view('common/header', $data);
         $this->load->view('accueil/index', $data);

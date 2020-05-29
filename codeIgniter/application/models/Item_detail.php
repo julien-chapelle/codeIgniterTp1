@@ -138,7 +138,7 @@ class Item_detail extends CI_Model {
     }
 
     protected function set_property_title($title) {
-        $alias = url_title($title, 'underscore', TRUE);
+        $alias = iconv( 'UTF-8', 'ASCII//TRANSLIT//IGNORE', (url_title($title, 'underscore', TRUE)));
         $this->_title = $title;
         $this->_alias = $alias;
     }

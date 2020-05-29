@@ -2,7 +2,7 @@
 $article_url = 'blog/' . $alias . '_' . $id;
 ?>
 <div class="col-md-4">
-    <?= heading(anchor($article_url, htmlentities($title)), 2, ['class' => 'border-bottom border-left border-warning pl-2']); ?>
+    <?= heading(anchor($article_url, htmlentities($title)), 5, ['class' => 'border-bottom border-left border-warning pl-2']); ?>
     <p>
         <small>
             <?= nice_date($date, 'd/m/Y'); ?>

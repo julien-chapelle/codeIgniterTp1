@@ -33,31 +33,32 @@
 </div>
 <!-- MODAL PUBLISH FIN -->
 <div class="container">
-    <div class="row pt-2">
-        <div class="col-md-5">
+    <div class="row">
+        <div class="col-md-10">
             <ul class="nav">
-                <li class="nav-item mr-2"><?= anchor('blog/index', "Liste articles", ['class' => 'btn btn-outline-warning btn-sm']) ?></li>
+                <li class="nav-item mr-2"><?= anchor('blog/index', "Liste articles", ['class' => 'btn btn-outline-warning btn-sm mt-2']) ?></li>
                 <?php if ($this->auth_user->is_connected) : ?>
                     <li class="nav-item">
-                        <?= anchor(['blog', 'edition', $this->item_detail->id], "Modifier article", ['class' => 'btn btn-outline-warning btn-sm']) ?>
+                        <?= anchor(['blog', 'edition', $this->item_detail->id], "Modifier article", ['class' => 'btn btn-outline-warning btn-sm mt-2']) ?>
                     </li class="nav-item mx-2">
-                    <?php if ($this->item_detail->status == 'D') : ?>
+                    <?php if ($this->item_detail->status == 'D' || $this->item_detail->status == 'W') : ?>
                         <li class="nav-item mx-2">
-                            <?= anchor(['blog', 'publication', $this->item_detail->id], "Publier", ['id' => 'menu_publish_article', 'data-target' => '#modal_publish_article', 'data-toggle' => 'modal', 'class' => 'btn btn-outline-warning btn-sm']) ?>
+                            <?= anchor(['blog', 'publication', $this->item_detail->id], "Publier", ['id' => 'menu_publish_article', 'data-target' => '#modal_publish_article', 'data-toggle' => 'modal', 'class' => 'btn btn-outline-warning btn-sm mt-2']) ?>
                         </li class="nav-item mx-2">
-                    <?php else : ?>
+                    <?php endif; ?>
+                    <?php if ($this->item_detail->status == 'P' || $this->item_detail->status == 'W') : ?>
                         <li class="nav-item mx-2">
-                            <?= anchor(['blog', 'suppression', $this->item_detail->id], "Supprimer", ['id' => 'menu_delete_article', 'data-target' => '#modal_delete_article', 'data-toggle' => 'modal', 'class' => 'btn btn-outline-warning btn-sm']) ?>
+                            <?= anchor(['blog', 'suppression', $this->item_detail->id], "Supprimer", ['id' => 'menu_delete_article', 'data-target' => '#modal_delete_article', 'data-toggle' => 'modal', 'class' => 'btn btn-outline-warning btn-sm mt-2']) ?>
                         </li>
                     <?php endif; ?>
-                    <li class="nav-item mx-2"><?= anchor('blog/edition', "Nouvel article", ['class' => 'btn btn-outline-warning btn-sm']) ?></li>
+                    <li class="nav-item"><?= anchor('blog/edition', "Nouvel article", ['class' => 'btn btn-outline-warning btn-sm mt-2']) ?></li>
                 <?php endif; ?>
             </ul>
         </div>
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-12">
-                    <?= heading($title); ?>
+                <div class="col-md-12 mt-2">
+                    <?= heading($title, 3); ?>
                     <p>
                         <small>
                             <?= nice_date($this->item_detail->date, 'd/m/Y'); ?>
