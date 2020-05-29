@@ -6,16 +6,22 @@ class Blog extends CI_Controller
 
     function index()
     {
+        $limite = 3;
+        $debut = (0) * $limite;
+
         $this->load->helper('date');
         $this->load->model('item');
         $this->load->model('article_status');
-        $this->item->load($this->auth_user->is_connected);
-
+        $this->load->model('item');
+        $this->load->library('pagination');
+        $this->item->load($this->auth_user->is_connected, $limite, $debut);
+        
         $data['title'] = "Blog";
 
         $this->load->view('common/header', $data);
         $this->load->view('blog/index', $data);
         $this->load->view('common/footer', $data);
+
     }
 
     public function edition($id = NULL)

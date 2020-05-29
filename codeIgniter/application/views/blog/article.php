@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-md-10">
             <ul class="nav">
-                <li class="nav-item mr-2"><?= anchor('blog/index', "Liste articles", ['class' => 'btn btn-outline-warning btn-sm mt-2']) ?></li>
+                <li class="nav-item mr-2"><?= anchor('blog', "Liste articles", ['class' => 'btn btn-outline-warning btn-sm mt-2']) ?></li>
                 <?php if ($this->auth_user->is_connected) : ?>
                     <li class="nav-item">
                         <?= anchor(['blog', 'edition', $this->item_detail->id], "Modifier article", ['class' => 'btn btn-outline-warning btn-sm mt-2']) ?>

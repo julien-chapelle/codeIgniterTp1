@@ -37,15 +37,15 @@ class Item extends CI_Model
         return count($this->_list);
     }
 
-    public function load($show_hidden = FALSE)
+    public function load($show_hidden = FALSE, $limite, $debut)
     {
         $this->db->select("id, title, alias, SUBSTRING_INDEX(content, ' ', 20) AS content, date, status, author ")
             ->from('article_username')
+            ->limit($limite, $debut)
             ->order_by('date', 'DESC');
         if (!$show_hidden) {
             $this->db->where('status', 'P');
         }
         $this->_list = $this->db->get()->result();
     }
-
 }

@@ -30,13 +30,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><?= anchor('index', "Accueil", ['class' => "nav-link text_color_orange"]); ?></li>
-        <li class="nav-item"><?= anchor('blog/index', ' Blog ', ['class' => "nav-link text_color_orange"]); ?></li>
+        <li class="nav-item"><?= anchor('blog', ' Blog ', ['class' => "nav-link text_color_orange"]); ?></li>
         <li class="nav-item"><?= anchor('contact', "Contact", ['class' => "nav-link text_color_orange"]); ?></li>
         <li class="nav-item"><?= anchor('about', "À propos", ['class' => "nav-link text_color_orange"]); ?></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-link text_color_orange"><?= $this->auth_user->is_connected ? 'Bienvenue <strong>' . $this->auth_user->username . ' |' . '</strong>' : '' ?></li>
-        <li class="nav-item text_color_orange"><?= $this->auth_user->is_connected ? anchor('profile/index', ' Profil | ', ['class' => "nav-link text_color_orange pl-0"]) : '' ?></li>
+        <li class="nav-item text_color_orange"><?= $this->auth_user->is_connected ? anchor('profile', ' Profil | ', ['class' => "nav-link text_color_orange pl-0"]) : '' ?></li>
         <li class="nav-item"><?= $this->auth_user->is_connected ? anchor('deconnection', 'Déconnexion', ['class' => "nav-link text_color_orange pl-0"]) : anchor('connection', 'Connexion', ['class' => "nav-link text_color_orange"]) ?></li>
       </ul>
     </div>

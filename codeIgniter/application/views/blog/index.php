@@ -23,6 +23,7 @@
         <?php if ($this->item->has_items) : ?>
             <?php
             foreach ($this->item->items as $article) {
+                var_dump($this->pagination->first_url);
                 $this->load->view('blog/article_resume', $article);
             }
             ?>
@@ -34,4 +35,5 @@
             </div>
         <?php endif; ?>
     </div>
+    <div class="text-center"><?= $this->pagination->create_links(); ?></div>
 </div>
